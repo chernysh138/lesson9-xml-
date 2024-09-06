@@ -3,6 +3,7 @@ include REXML
 xmlfile = File.new("movies.xml")
 xmldoc = Document.new(xmlfile)
 root = xmldoc.root
+
 puts "Атрибут корневого элемента:" + root.attributes["shelf"]
 xmldoc.elements.each("collection/movie") do |e|
   puts "Атрибут в теге movie: " + e.attributes["title"]
