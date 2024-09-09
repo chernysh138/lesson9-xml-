@@ -1,5 +1,5 @@
 require "rexml/document"
-
+require "date"
 file_path = (__dir__ + "/dr.xml")
 unless File.exist?(file_path)
   xmlfile = File.open(file_path, "w") do |file|
@@ -19,8 +19,8 @@ data = STDIN.gets.chomp
 wishes = xmldoc.root
 wish = wishes.add_element("wish", { "date" => data })
 wish.text = dream
-xmlfile = File.new(file_path, "w")
-xmldoc.write(xmlfile, 2)
-xmlfile.close
+xmlfile = File.open(file_path, "w") do |file|
+  xmldoc.write(file, 2)
+end
 
 puts "информация успешно сохранена"
